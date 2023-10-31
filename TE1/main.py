@@ -6,8 +6,7 @@ from counting_sort import counting_sort as do_cs
 
 data_source = input("press 1 for dataset.txt | press 2 for generate new")
 if data_source == "1":
-    datas = open("dataset.txt", "r")
-    print(len(datas))
+    datas = open("TE1\dataset.txt", "r")
     print(datas.readline())
 while True:
     try:
