@@ -17,12 +17,13 @@ def generate_dataset_txtmode(n = 1):
     return dataset
 
 # Run IF AND ONLY IF you want to get new datasets in dataset.txt
-file = open("TE1\dataset.txt", "w")
-to_write = ""
-size = 500
-for i in range(3):
-    to_write += f"{generate_dataset_txtmode(size)}\n"
-    size *= 10
-file.write(to_write)
-file.close()
-print("Created new datasets for dataset.txt")
+if __name__ == "__main__":
+    file = open("TE1\dataset.txt", "w")
+    to_write = ""
+    size = 500
+    for i in range(3):
+        to_write += f"{generate_dataset_txtmode(size)}\n"
+        size *= 10
+    file.write(to_write)
+    file.close()
+    print("Created new datasets for dataset.txt")

@@ -1,4 +1,4 @@
-from math import floor, sqrt
+from math import ceil, sqrt
 
 def bidirectional_conditional_insertion_sort(A = []):
     # Make Bidirectional-Conditional-Insertion-Sort Algorithm Here
@@ -8,7 +8,7 @@ def bidirectional_conditional_insertion_sort(A = []):
     def SWAP(A = [], i = 0, j = 0):
         A[i], A[j] = A[j], A[i]
     def ISEQUAL(A = [], sl = 0, sr = 0):
-        for k in range(sl+1, sr-1):
+        for k in range(sl+1, sr):
             if A[k] != A[sl]:
                 SWAP(A, k, sl)
                 return k
@@ -33,14 +33,14 @@ def bidirectional_conditional_insertion_sort(A = []):
     sorted_right = n-1
 
     while sorted_left < sorted_right:
-        SWAP(A, sorted_right, sorted_left+((sorted_right-sorted_left)//2))
+        SWAP(A, sorted_right, sorted_left+(int(ceil((sorted_right-sorted_left)/2))))
         if A[sorted_left] == A[sorted_right]:
             if ISEQUAL(A, sorted_left, sorted_right) == -1:
                 return
         if A[sorted_left] > A[sorted_right]:
             SWAP(A, sorted_left, sorted_right)
         if (sorted_right-sorted_left) >= 100:
-            for i in range(sorted_left+1, floor(sqrt(sorted_right-sorted_left))):
+            for i in range(sorted_left+1, ceil(sqrt(sorted_right-sorted_left))):
                 if A[sorted_right] < A[i]:
                     SWAP(A, sorted_right, i)
                 elif A[sorted_left] > A[i]:
