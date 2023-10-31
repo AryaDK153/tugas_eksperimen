@@ -25,3 +25,4 @@ for i in range(3):
     size *= 10
 file.write(to_write)
 file.close()
+print("Created new datasets for dataset.txt")
