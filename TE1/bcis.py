@@ -1,5 +1,4 @@
 from math import floor, sqrt
-import random
 
 def bidirectional_conditional_insertion_sort(A = []):
     # Make Bidirectional-Conditional-Insertion-Sort Algorithm Here
@@ -67,23 +66,3 @@ def bidirectional_conditional_insertion_sort(A = []):
         
         sorted_left += 1
         sorted_right -= 1
-
-def counting_sort(A = [], B = [], k = 0):
-    # Make Counting-Sort Algorithm Here
-    # A = Main Array
-    # B = Return Array
-    # k = Biggest Value in A
-    n = len(A)
-    pass
-
-def generate_dataset(n = 1):
-    # Make Generate-Dataset Algorithm Here
-    dataset = [0]*n
-    for i in range(0,n-1):
-        dataset[i] = random.randint(0,n)
-    return dataset
-
-A = generate_dataset(10)
-print(A)
-bidirectional_conditional_insertion_sort(A)
-print(A)
