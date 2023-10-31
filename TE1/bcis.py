@@ -1,5 +1,12 @@
 from math import ceil, sqrt
 
+'''
+Referenced from the Pseudocode from:
+Adnan Saher Mohammed, S¸ahin Emrah Amrahov, and Fatih V C¸ elebi. Bidirectional Conditional
+    Insertion Sort algorithm; An efficient progress on the classical insertion sort. Future Generation
+    Computer Systems, 71:102–112, 2017.
+'''
+
 def bidirectional_conditional_insertion_sort(A = []):
     # Make Bidirectional-Conditional-Insertion-Sort Algorithm Here
     # A = Main Array

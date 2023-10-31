@@ -27,19 +27,17 @@ while True:
                 A.append(int(e))
             except:
                 break
-        print("Original Order:", A)
+        print(f"Original Order:\n{A}")
         B = A.copy()
         C = A.copy()
-
 
         print("# Sorting with BCIS #")
         do_bcsi(B)
         print(B)
         
-        
-        # print("# Sorting with Counting-Sort #")
-        # do_cs(C)
-        # print(C)
+        print("# Sorting with Counting-Sort #")
+        do_cs(C)
+        print(C)
         
         datas.close()
         break
@@ -47,17 +45,20 @@ while True:
         while True:
             try:
                 A = generate_dataset_arraymode(int(input("Insert Dataset Length: ")))
-                print("Original Order:", A)
-                B = A.copy()
-                C = A.copy()
-                print("# Sorting with BCIS #")
-                do_bcsi(B)
-                print(B)
-                print("# Sorting with Counting-Sort #")
-                do_cs(C)
-                print(C)
+                print(f"Original Order:\n{A}")
                 break
             except:
                 print("Wrong input type! Please Try Again\n\n")
+        
+        B = A.copy()
+        C = A.copy()
+
+        print("# Sorting with BCIS #")
+        do_bcsi(B)
+        print(B)
+
+        print("# Sorting with Counting-Sort #")
+        do_cs(C)
+        print(C)
         break
     print("Unknown Input! Please Try Again\n\n")
