@@ -5,6 +5,9 @@ Referenced from the Pseudocode from:
 Adnan Saher Mohammed, S¸ahin Emrah Amrahov, and Fatih V C¸ elebi. Bidirectional Conditional
     Insertion Sort algorithm; An efficient progress on the classical insertion sort. Future Generation
     Computer Systems, 71:102–112, 2017.
+
+In this implementation, I've made sure to adjust codes to make sure the indexing starts from 0 to (n-1),
+where 0 as the left-most index of the dataset and (n-1) as the right-most index.
 '''
 
 def bidirectional_conditional_insertion_sort(A = []):
@@ -52,9 +55,9 @@ def bidirectional_conditional_insertion_sort(A = []):
                     SWAP(A, sorted_right, i)
                 elif A[sorted_left] > A[i]:
                     SWAP(A, sorted_left, i)
-        
         else:
             i = sorted_left+1
+            
         lc = A[sorted_left]
         rc = A[sorted_right]
         while i < sorted_right:
