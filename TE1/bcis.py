@@ -1,4 +1,5 @@
-from math import ceil, sqrt
+from math import floor, ceil, sqrt
+from time import sleep
 
 '''
 Referenced from the Pseudocode from:
@@ -50,7 +51,7 @@ def bidirectional_conditional_insertion_sort(A = []):
         if A[sorted_left] > A[sorted_right]:
             SWAP(A, sorted_left, sorted_right)
         if (sorted_right-sorted_left) >= 100:
-            for i in range(sorted_left+1, ceil(sqrt(sorted_right-sorted_left))):
+            for i in range(sorted_left+1, floor(sqrt(sorted_right-sorted_left)+1)):
                 if A[sorted_right] < A[i]:
                     SWAP(A, sorted_right, i)
                 elif A[sorted_left] > A[i]:
@@ -76,3 +77,5 @@ def bidirectional_conditional_insertion_sort(A = []):
         
         sorted_left += 1
         sorted_right -= 1
+        # print(A)
+        # sleep(3)

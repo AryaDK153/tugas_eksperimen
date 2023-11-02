@@ -5,10 +5,23 @@ def generate_dataset_arraymode(n = 1):
         return []
     # Make Generate-Dataset Algorithm Here
     # For generating new while running a caller program
-    dataset = [0]*n
+    dataset_sorted = [0]*n
+    last_k = 0
     for i in range(0,n-1):
-        dataset[i] = random.randint(0, n+1)
-    return dataset
+        last_k = random.randint(last_k, last_k+10)
+        dataset_sorted[i] = last_k
+    
+    dataset_random = [0]*n
+    for i in range(0,n-1):
+        dataset_random += f"{random.randint(0, n+1)} "
+
+    dataset_reverse = [0]*n
+    last_k = n+1
+    for i in range(0,n-1):
+        last_k = random.randint(last_k-10, last_k)
+        dataset_reverse += f"{last_k} "
+    
+    return dataset_sorted, dataset_random, dataset_reverse
 
 def generate_dataset_txtmode(n = 1):
     if n < 1:
@@ -16,8 +29,21 @@ def generate_dataset_txtmode(n = 1):
     # Make Generate-Dataset Algorithm Here
     # For inserting into dataset.txt
     dataset = ""
+    last_k = 0
+    for i in range(0,n-1):
+        last_k = random.randint(last_k, last_k+10)
+        dataset += f"{last_k} "
+    dataset += "\n"
+
     for i in range(0,n-1):
         dataset += f"{random.randint(0, n+1)} "
+    dataset += "\n"
+
+    last_k = n+1
+    for i in range(0,n-1):
+        last_k = random.randint(last_k-10, last_k)
+        dataset += f"{last_k} "
+    dataset += "\n"
     return dataset
 
 # Run IF AND ONLY IF you want to get new datasets in dataset.txt

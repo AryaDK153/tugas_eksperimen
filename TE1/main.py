@@ -1,5 +1,5 @@
 from time import sleep
-from bcis import bidirectional_conditional_insertion_sort as do_bcsi
+from bcis import bidirectional_conditional_insertion_sort as do_bcis
 from generate_dataset import generate_dataset_arraymode
 from counting_sort import counting_sort as do_cs
 
@@ -14,51 +14,93 @@ while True:
             size = "Small"
         elif i == 2:
             size = "Medium"
-            datas.readline()
+            for i in range(4):
+                datas.readline()
         elif i == 3:
             size = "Big"
-            datas.readline()
-            datas.readline()
+            for i in range(7):
+                datas.readline
         print(f"========================== Dataset #{i}: {size} ==========================")
-        data = datas.readline().split(" ")
-        A = []
-        for e in data:
-            try:
-                A.append(int(e))
-            except:
-                break
-        print(f"Original Order:\n{A}")
-        B = A.copy()
-        C = A.copy()
+        for i in range(3):
+            data = datas.readline().split(" ")
+            A = []
+            for e in data:
+                try:
+                    A.append(int(e))
+                except:
+                    break
+            if i == 0:
+                sorted_set = A
+            elif i == 1:
+                random_set = A
+            elif i == 2:
+                reverse_set = A
+        print(f"Original Order:\n# Sorted #\n{sorted_set}\n# Random #\n{random_set}\n# Reverse #\n{reverse_set}")
 
-        print("# Sorting with BCIS #")
-        do_bcsi(B)
-        print(B)
-        
-        print("# Sorting with Counting-Sort #")
-        do_cs(C)
-        print(C)
+        while True:
+            method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
+            if method == "1":
+                # print("# Sorting with BCIS #")
+                # do_bcis(sorted_set)
+                # print(f"# From Sorted #\n{sorted_set}")
+                # sleep(1)
+                # do_bcis(random_set)
+                # print(f"# From Random #\n{random_set}")
+                # sleep(1)
+                do_bcis(reverse_set)
+                print(f"# From Reverse #\n{reverse_set}")
+                break
+            elif method == "2":
+                print("# Sorting with Counting-Sort #")
+                do_cs(sorted_set)
+                print(f"# From Sorted #\n{sorted_set}")
+                sleep(1)
+                do_cs(random_set)
+                print(f"# From Random #\n{random_set}")
+                sleep(1)
+                do_cs(reverse_set)
+                print(f"# From Reverse #\n{reverse_set}")
+                break
+            else:
+                print("Wrong input! Please Try Again\n\n")
+        break
         
         datas.close()
         break
     elif data_source == "2":
         while True:
             try:
-                A = generate_dataset_arraymode(int(input("Insert Dataset Length: ")))
-                print(f"Original Order:\n{A}")
+                sorted_set, random_set, reverse_set = generate_dataset_arraymode(int(input("Insert Dataset Length: ")))
+                print(f"Original Order:\n# Sorted #\n{sorted_set}\n# Random #\n{random_set}\n# Reverse #\n{reverse_set}")
                 break
             except:
                 print("Wrong input type! Please Try Again\n\n")
         
-        B = A.copy()
-        C = A.copy()
-
-        print("# Sorting with BCIS #")
-        do_bcsi(B)
-        print(B)
-
-        print("# Sorting with Counting-Sort #")
-        do_cs(C)
-        print(C)
+        while True:
+            method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
+            if method == "1":
+                print("# Sorting with BCIS #")
+                do_bcis(sorted_set)
+                print(f"# From Sorted #\n{sorted_set}")
+                sleep(1)
+                do_bcis(random_set)
+                print(f"# From Random #\n{random_set}")
+                sleep(1)
+                do_bcis(reverse_set)
+                print(f"# From Reverse #\n{reverse_set}")
+                break
+            elif method == "2":
+                print("# Sorting with Counting-Sort #")
+                do_cs(sorted_set)
+                print(f"# From Sorted #\n{sorted_set}")
+                sleep(1)
+                do_cs(random_set)
+                print(f"# From Random #\n{random_set}")
+                sleep(1)
+                do_cs(reverse_set)
+                print(f"# From Reverse #\n{reverse_set}")
+                break
+            else:
+                print("Wrong input! Please Try Again\n\n")
         break
     print("Unknown Input! Please Try Again\n\n")
