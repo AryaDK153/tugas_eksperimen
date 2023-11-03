@@ -1,4 +1,3 @@
-from time import sleep
 from bcis import bidirectional_conditional_insertion_sort as do_bcis
 from generate_dataset import generate_dataset_arraymode
 from counting_sort import counting_sort as do_cs
@@ -40,24 +39,20 @@ while True:
         while True:
             method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
             if method == "1":
-                print("# Sorting with BCIS #")
+                print("\n# Sorting with BCIS #")
                 do_bcis(sorted_set)
                 print(f"# From Sorted #\n{sorted_set}")
-                sleep(1)
                 do_bcis(random_set)
                 print(f"# From Random #\n{random_set}")
-                sleep(1)
                 do_bcis(reverse_set)
                 print(f"# From Reverse #\n{reverse_set}")
                 break
             elif method == "2":
-                print("# Sorting with Counting-Sort #")
+                print("\n# Sorting with Counting-Sort #")
                 do_cs(sorted_set)
                 print(f"# From Sorted #\n{sorted_set}")
-                sleep(1)
                 do_cs(random_set)
                 print(f"# From Random #\n{random_set}")
-                sleep(1)
                 do_cs(reverse_set)
                 print(f"# From Reverse #\n{reverse_set}")
                 break
@@ -79,24 +74,20 @@ while True:
         while True:
             method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
             if method == "1":
-                print("# Sorting with BCIS #")
+                print("\n# Sorting with BCIS #")
                 do_bcis(sorted_set)
                 print(f"# From Sorted #\n{sorted_set}")
-                sleep(1)
                 do_bcis(random_set)
                 print(f"# From Random #\n{random_set}")
-                sleep(1)
                 do_bcis(reverse_set)
                 print(f"# From Reverse #\n{reverse_set}")
                 break
             elif method == "2":
-                print("# Sorting with Counting-Sort #")
+                print("\n# Sorting with Counting-Sort #")
                 do_cs(sorted_set)
                 print(f"# From Sorted #\n{sorted_set}")
-                sleep(1)
                 do_cs(random_set)
                 print(f"# From Random #\n{random_set}")
-                sleep(1)
                 do_cs(reverse_set)
                 print(f"# From Reverse #\n{reverse_set}")
                 break
