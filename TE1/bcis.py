@@ -84,5 +84,5 @@ def bidirectional_conditional_insertion_sort(A = []):
         sorted_right -= 1
         # print(A)
         # input("<<Enter>>")
-    
-    print("\nTotal Time:", perf_counter_ns() - starttime)
+    endtime = perf_counter_ns()
+    print("\nTotal Time:", (starttime-endtime))

@@ -39,4 +39,5 @@ def counting_sort(A = []):
         A[C[B[j]]-1] = B[j]
         C[B[j]] -= 1
     
-    print("\nTotal Time:", perf_counter_ns() - starttime)
+    endtime = perf_counter_ns()
+    print("\nTotal Time:", (starttime-endtime))
