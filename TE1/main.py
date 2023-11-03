@@ -40,13 +40,13 @@ while True:
         while True:
             method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
             if method == "1":
-                # print("# Sorting with BCIS #")
-                # do_bcis(sorted_set)
-                # print(f"# From Sorted #\n{sorted_set}")
-                # sleep(1)
-                # do_bcis(random_set)
-                # print(f"# From Random #\n{random_set}")
-                # sleep(1)
+                print("# Sorting with BCIS #")
+                do_bcis(sorted_set)
+                print(f"# From Sorted #\n{sorted_set}")
+                sleep(1)
+                do_bcis(random_set)
+                print(f"# From Random #\n{random_set}")
+                sleep(1)
                 do_bcis(reverse_set)
                 print(f"# From Reverse #\n{reverse_set}")
                 break

@@ -1,5 +1,5 @@
 from math import floor, ceil, sqrt
-from time import sleep
+from time import perf_counter_ns
 
 '''
 Referenced from the Pseudocode from:
@@ -14,6 +14,7 @@ where 0 as the left-most index of the dataset and (n-1) as the right-most index.
 def bidirectional_conditional_insertion_sort(A = []):
     # Make Bidirectional-Conditional-Insertion-Sort Algorithm Here
     # A = Main Array
+    starttime = perf_counter_ns()
 
     'BCIS Functions'
     def SWAP(A = [], i = 0, j = 0):
@@ -45,11 +46,14 @@ def bidirectional_conditional_insertion_sort(A = []):
 
     while sorted_left < sorted_right:
         SWAP(A, sorted_right, sorted_left+(int(ceil((sorted_right-sorted_left)/2))))
+        # print("\nUncon-swap\n", A)
         if A[sorted_left] == A[sorted_right]:
             if ISEQUAL(A, sorted_left, sorted_right) == -1:
                 return
+        # print("\nfirstifswap\n", A)
         if A[sorted_left] > A[sorted_right]:
             SWAP(A, sorted_left, sorted_right)
+        # print("\nsecondifswap", A)
         if (sorted_right-sorted_left) >= 100:
             for i in range(sorted_left+1, floor(sqrt(sorted_right-sorted_left)+1)):
                 if A[sorted_right] < A[i]:
@@ -58,7 +62,8 @@ def bidirectional_conditional_insertion_sort(A = []):
                     SWAP(A, sorted_left, i)
         else:
             i = sorted_left+1
-            
+        
+        # print(A)
         lc = A[sorted_left]
         rc = A[sorted_right]
         while i < sorted_right:
@@ -78,4 +83,6 @@ def bidirectional_conditional_insertion_sort(A = []):
         sorted_left += 1
         sorted_right -= 1
         # print(A)
-        # sleep(3)
+        # input("<<Enter>>")
+    
+    print("\nTotal Time:", perf_counter_ns() - starttime)

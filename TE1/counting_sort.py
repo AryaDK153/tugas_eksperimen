@@ -1,3 +1,5 @@
+from time import perf_counter_ns
+
 '''
 Referenced from the Pseudocode from:
 CLRS. (2009). Ch. 8.2 Counting-Sort. Introduction to Algorithms. London: The MIT Press.
@@ -11,6 +13,7 @@ def find_biggest(A = []):
     return result
 
 def counting_sort(A = []):
+    starttime = perf_counter_ns()
     # Make Counting-Sort Algorithm Here
     # A = Main Array
     # B = Temp Array
@@ -35,3 +38,5 @@ def counting_sort(A = []):
     for j in range(n-1, -1, -1):
         A[C[B[j]]-1] = B[j]
         C[B[j]] -= 1
+    
+    print("\nTotal Time:", perf_counter_ns() - starttime)
