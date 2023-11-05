@@ -1,5 +1,4 @@
 from math import floor, ceil, sqrt
-from time import perf_counter_ns
 
 '''
 Referenced from the Pseudocode from:
@@ -14,7 +13,6 @@ where 0 as the left-most index of the dataset and (n-1) as the right-most index.
 def bidirectional_conditional_insertion_sort(A = []):
     # Make Bidirectional-Conditional-Insertion-Sort Algorithm Here
     # A = Main Array
-    starttime = perf_counter_ns()
 
     'BCIS Functions'
     def SWAP(A = [], i = 0, j = 0):
@@ -84,5 +82,3 @@ def bidirectional_conditional_insertion_sort(A = []):
         sorted_right -= 1
         # print(A)
         # input("<<Enter>>")
-    endtime = perf_counter_ns()
-    print("\nTotal Time:", (endtime-starttime))
