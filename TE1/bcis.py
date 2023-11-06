@@ -43,7 +43,8 @@ def bidirectional_conditional_insertion_sort(A = []):
     sorted_right = n-1
 
     while sorted_left < sorted_right:
-        SWAP(A, sorted_right, sorted_left+(int(ceil((sorted_right-sorted_left)/2))))
+        if A[sorted_right] < A[sorted_left]:
+            SWAP(A, sorted_right, sorted_left+(int(ceil((sorted_right-sorted_left)/2))))
         # print("\nUncon-swap\n", A)
         if A[sorted_left] == A[sorted_right]:
             if ISEQUAL(A, sorted_left, sorted_right) == -1:

@@ -8,7 +8,8 @@ from timeit import timeit
 while True:
     data_source = input("press 1 for dataset.txt | press 2 for generate new\nAnswer: ")
     if data_source == "1":
-        datas = open("TE1\dataset.txt", "r")
+        # datas = open("TE1\dataset.txt", "r")
+        datas = open("TE1\dataset - Backup - 1 - Bug in Reverse.txt", "r")
         i = int(input("1 for Small (500 data) | 2 for Medium (5000 data) | 3 for Big (50000 data)\nAnswer: "))
         if i == 1:
             size = "Small"
@@ -35,18 +36,18 @@ while True:
                 random_set = A
             elif i == 2:
                 reverse_set = A
-        # print(f"Original Order:\n# Sorted #\n{sorted_set}\n# Random #\n{random_set}\n# Reverse #\n{reverse_set}")
+        print(f"Original Order:\n# Sorted #\n{sorted_set}\n# Random #\n{random_set}\n# Reverse #\n{reverse_set}")
 
         while True:
             method = input("1 for BCIS | 2 for Counting-Sort\nAnswer: ")
             if method == "1":
                 print("\n# Sorting with BCIS #")
-                print("\nalgorithm runtime (sorted) =", timeit(lambda: do_bcis(sorted_set), number=1))
+                # print("\nalgorithm runtime (sorted) =", timeit(lambda: do_bcis(sorted_set), number=1))
                 # print(f"# From Sorted #\n{sorted_set}")
-                print("\nalgorithm runtime (random) =", timeit(lambda: do_bcis(random_set), number=1))
+                # print("\nalgorithm runtime (random) =", timeit(lambda: do_bcis(random_set), number=1))
                 # print(f"# From Random #\n{random_set}")
                 print("\nalgorithm runtime (reverse) =", timeit(lambda: do_bcis(reverse_set), number=1))
-                # print(f"# From Reverse #\n{reverse_set}")
+                print(f"# From Reverse #\n{reverse_set}")
                 break
             elif method == "2":
                 print("\n# Sorting with Counting-Sort #")
