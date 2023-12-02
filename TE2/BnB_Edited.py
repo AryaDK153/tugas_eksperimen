@@ -279,15 +279,15 @@ def main(inputfile, output_dir, cutoff, randSeed):
 	#print(inputdir,inputfile.split('.')[0])
 
 	#WRITE SOL FILES
-	with open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.sol', 'w') as f:
-	    f.write('%i\n' % (len(Sol_VC)))
-	    f.write(','.join([str(x[0]) for x in Sol_VC]))
+	f = open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.sol', 'w')
+	f.write('%i\n' % (len(Sol_VC)))
+	f.write(','.join([str(x[0]) for x in Sol_VC]))
 
 
 	#WRITE TRACE FILES
-	with open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.trace', 'w') as f:
-	    for t in times:
-	        f.write('%.2f,%i\n' % ((t[1]),t[0]))
+	f = open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.trace', 'w')
+	for t in times:
+		f.write('%.2f,%i\n' % ((t[1]),t[0]))
 
 if __name__ == '__main__':
 	#create parser; example: python bnb.py --datafile ../Data/karate.graph --cutoff_time 200
