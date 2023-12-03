@@ -9,6 +9,7 @@ def addEdge(adj, x, y):
 def dfs(adj, dp, src, par):
 	for child in adj[src]:
 		if child != par:
+			# print(dp)
 			dfs(adj, dp, child, src)
 
 	for child in adj[src]:
@@ -18,21 +19,38 @@ def dfs(adj, dp, src, par):
 
 			# including source in the vertex cover
 			dp[src][1] = dp[src][1] + min(dp[child][1], dp[child][0])
+		# print(dp)
 
 
 def minSizeVertexCover(adj, N):
-	dp = [[0 for j in range(2)] for i in range(N+1)]
-	for i in range(1, N+1):
+	# dp = [[0 for j in range(2)] for i in range(N+1)]
+	# for i in range(1, N+1):
+	dp = [[0 for j in range(2)] for i in range(N)]
+	for i in range(N):
 		# 0 denotes not included in vertex cover
 		dp[i][0] = 0
 
 		# 1 denotes included in vertex cover
 		dp[i][1] = 1
 
-	dfs(adj, dp, 1, -1)
+	# dfs(adj, dp, 1, -1)
+	# print(dp)
+	dfs(adj, dp, 0, -1)
 
 	# printing minimum size vertex cover
-	print(min(dp[1][0], dp[1][1]))
+
+	print(min(dp[0][0], dp[0][1]))
+	vc_result = 'VC = {'
+	for x in range(N):
+		current = dp[x]
+		if current[1] <= current[0]:
+			try:
+				int(vc_result[-1])
+				vc_result += ', '
+			except:
+				pass
+			vc_result += f'{x}'
+	print(vc_result + '}')
 
 '''
 # Driver Code

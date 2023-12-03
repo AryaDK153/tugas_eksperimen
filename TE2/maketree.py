@@ -25,8 +25,9 @@ def maketree(N):
     last_bottom = 0
     top = 500
 
+    # Ok this works (hopefully with correct dataset result, also, no idea about max recursion, but definitely not infinite)
     for repeat in range((N//8000)+1):
-        # Stack overflow prevention (tested ==> max is 500 without this, but 8000 with this... still not enough)
+        # Stack overflow prevention (tested ==> max recursion is 500 without this, but max recursion becomes 8000 with this... still not enough)
         while N > 0:
             if N < top:
                 top = N

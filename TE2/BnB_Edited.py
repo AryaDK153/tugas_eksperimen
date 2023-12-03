@@ -89,7 +89,8 @@ When Frontier Set==empty, the whole graph and all possible solutions have been e
 End
 """
 
-def BnB(G, T):
+# def BnB(G, T):
+def BnB(G):
 	#RECORD START TIME
 	start_time=time.time()
 	end_time=start_time
@@ -116,7 +117,8 @@ def BnB(G, T):
 	Frontier.append((v[0], 1, (-1, -1)))
 	# print(Frontier)
 
-	while Frontier!=[] and delta_time<T:
+	# while Frontier!=[] and delta_time<T:
+	while Frontier!=[]:
 		(vi,state,parent)=Frontier.pop() #set current node to last element in Frontier
 		
 		#print('New Iteration(vi,state,parent):', vi, state, parent)
@@ -207,10 +209,11 @@ def BnB(G, T):
 
 		end_time=time.time()
 		delta_time=end_time-start_time
-		if delta_time>T:
-			print('Cutoff time reached')
+		# if delta_time>T:
+		# 	print('Cutoff time reached')
 
-	return OptVC,times
+	# return OptVC,times
+	return OptVC
 
 #TO FIND THE VERTEX WITH MAXIMUM DEGREE IN REMAINING GRAPH
 def find_maxdeg(g):
@@ -249,9 +252,10 @@ def VC_Size(VC):
 ##################################################################
 # MAIN BODY OF CODE
 
-def main(inputfile, output_dir, cutoff, randSeed):
+# def main(inputfile, output_dir, cutoff, randSeed):
+def main(adj_list, output_dir, cutoff, randSeed):
 	#READ INPUT FILE INTO GRAPH
-	adj_list = parse(inputfile)	
+	# adj_list = parse(inputfile)	
 	# CONSTRUCT THE GRAPH BASED ON ADJACENT LIST
 	g = create_graph(adj_list)
 
