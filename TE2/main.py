@@ -2,7 +2,8 @@ from vertex_cover_dp import minSizeVertexCover as dp_mvc
 from maketree import maketree
 from BnB_Edited import BnB as bnb_mvc
 from timeit import timeit
-from memory_profiler import memory_usage
+# from memory_profiler import memory_usage
+import tracemalloc
 import ast
 
 '''ONLY FOR TESTING WHETHER THE CODES WORK'''
@@ -23,19 +24,21 @@ while True:
                 datas.readline()
         print(f"========================== Dataset #{i}: {size} ==========================")
         data = datas.readline()
-        print(f"\n# Adjacency List #\n{data}")
+        # print(f"\n# Adjacency List #\n{data}")
         adj_list = ast.literal_eval(data)
-        print(f"adj_list is list? {isinstance(adj_list, list)}")
+        # print(f"adj_list is list? {isinstance(adj_list, list)}")
 
         while True:
             method = input("1 for DP | 2 for BnB\nAnswer: ")
             if method == "1":
                 print("\n# MVC with Dynamic Programming #")
+                tracemalloc.start()
                 print("\nalgorithm runtime =", timeit(lambda: dp_mvc(adj_list, len(adj_list)), number=1))
+                print(tracemalloc.take_snapshot().statistics('traceback')[0].size / (1024 * 1024))
                 # print("\nalgorithm mem usage =", max(memory_usage(dp_mvc(adj_list, len(adj_list)))))
                 break
             elif method == "2":
-                print("\n# MVC with Branch and Bound #")
+                print("\n# MVC with Branch and Bound #") 
                 print("\nalgorithm runtime =", timeit(lambda: bnb_mvc(adj_list), number=1))
                 # print("\nalgorithm mem usage =", max(memory_usage(bnb_mvc(adj_list))))
                 break
