@@ -15,6 +15,7 @@ The output will be two files: *.sol and *.trace created in the project Output fo
 '''
 
 import argparse
+import tracemalloc
 import networkx as nx
 import operator
 import time
@@ -25,8 +26,11 @@ def parse(datafile):
 	adj_list = []
 	with open(datafile) as f:
 		num_vertices, num_edges, weighted = map(int, f.readline().split())
+		print(num_vertices)
 		for i in range(num_vertices):
 			adj_list.append(map(int, f.readline().split()))
+	# print(len(adj_list))
+	# print(adj_list)
 	return adj_list
 
 # USE THE ADJACENCY LIST TO CREATE A GRAPH
@@ -34,7 +38,8 @@ def create_graph(adj_list):
 	G = nx.Graph()
 	for i in range(len(adj_list)):
 		for j in adj_list[i]:
-			G.add_edge(i + 1, j)
+			# G.add_edge(i + 1, j)
+			G.add_edge(i, j)
 	return G
 
 # BRANCH AND BOUND FUNCTION to find minimum VC of a graph
@@ -89,8 +94,8 @@ When Frontier Set==empty, the whole graph and all possible solutions have been e
 End
 """
 
-# def BnB(G, T):
-def BnB(G):
+def BnB(G, T):
+	tracemalloc.start()
 	#RECORD START TIME
 	start_time=time.time()
 	end_time=start_time
@@ -117,8 +122,7 @@ def BnB(G):
 	Frontier.append((v[0], 1, (-1, -1)))
 	# print(Frontier)
 
-	# while Frontier!=[] and delta_time<T:
-	while Frontier!=[]:
+	while Frontier!=[] and delta_time<T:
 		(vi,state,parent)=Frontier.pop() #set current node to last element in Frontier
 		
 		#print('New Iteration(vi,state,parent):', vi, state, parent)
@@ -209,16 +213,17 @@ def BnB(G):
 
 		end_time=time.time()
 		delta_time=end_time-start_time
-		# if delta_time>T:
-		# 	print('Cutoff time reached')
+		if delta_time>T:
+			print('Cutoff time reached')
 
-	# return OptVC,times
-	return OptVC
+	print("Mem Usage:", tracemalloc.take_snapshot().statistics('traceback')[0].size / (1024 * 1024))
+	return OptVC,times
 
 #TO FIND THE VERTEX WITH MAXIMUM DEGREE IN REMAINING GRAPH
 def find_maxdeg(g):
 	deglist = g.degree()
-	deglist_sorted = sorted(deglist.items(), reverse=True, key=operator.itemgetter(
+	# print(deglist)
+	deglist_sorted = sorted(dict(deglist).items(), reverse=True, key=operator.itemgetter(
 		1))  # sort in descending order of node degree
 	v = deglist_sorted[0]  # tuple - (node,degree)
 	return v
@@ -253,9 +258,9 @@ def VC_Size(VC):
 # MAIN BODY OF CODE
 
 # def main(inputfile, output_dir, cutoff, randSeed):
-def main(adj_list, output_dir, cutoff, randSeed):
+def main(inputfile, cutoff):
 	#READ INPUT FILE INTO GRAPH
-	# adj_list = parse(inputfile)	
+	adj_list = parse(inputfile)	
 	# CONSTRUCT THE GRAPH BASED ON ADJACENT LIST
 	g = create_graph(adj_list)
 
@@ -279,17 +284,19 @@ def main(adj_list, output_dir, cutoff, randSeed):
 	# print('Times',times)
 
 	# WRITE SOLUTION AND TRACE FILES TO "*.SOL" AND '*.TRACE"  RESPECTIVELY
-	inputdir, inputfile = os.path.split(args.inst)
+	inputdir, inputfile = os.path.split(inputfile)
 	#print(inputdir,inputfile.split('.')[0])
 
 	#WRITE SOL FILES
-	f = open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.sol', 'w')
+	# f = open('.\Output' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.sol', 'w') # for some reason never worked so... please, excuse the messy folder
+	f = open('Output' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.sol', 'w')
 	f.write('%i\n' % (len(Sol_VC)))
 	f.write(','.join([str(x[0]) for x in Sol_VC]))
 
 
 	#WRITE TRACE FILES
-	f = open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.trace', 'w')
+	# f = open('.\Output\\' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.trace', 'w') # for some reason never worked so... please, excuse the messy folder
+	f = open('Output' + inputfile.split('.')[0] + '_BnB_'+str(cutoff)+'.trace', 'w')
 	for t in times:
 		f.write('%.2f,%i\n' % ((t[1]),t[0]))
 
@@ -304,6 +311,7 @@ if __name__ == '__main__':
 
 	algorithm = args.alg
 	graph_file = args.inst
+	print(graph_file)
 	output_dir = 'Output/'
 	cutoff = args.time
 	randSeed = args.seed
